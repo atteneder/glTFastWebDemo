@@ -7,14 +7,29 @@
 	
 </head>
 <body>
-	<h1>GLTF Loader Compare</h1>
-<iframe id="UnityGLTF" src="UnityGLTF/index.html"></iframe>
-<iframe id="GLTFast" src="GLTFast/index.html"></iframe>
+<header><h1>GLTF Loader Compare</h1>
+Enter a custom URL to a glTF binary (.glb) file here:
 <form id="urlform">
-	<input id="formUrl" type="text">
-	<input type="submit" value="load" onclick="submitUrl();">
+	<input id="formUrl" type="text" value="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb">
+	<button type="button" onclick="submitUrl();">Load</button>
 </form>
-<h2>Official Khronos glTF glb sample files</h2>
+</header>
+<div class="frameContainer">
+	<a href="https://github.com/KhronosGroup/UnityGLTF" target="_blank">Khronos UnityGLTF</a><br />
+	<iframe id="UnityGLTF" src="UnityGLTF/index.html"></iframe>
+</div>
+<div class="frameContainer">
+	<a href="https://github.com/atteneder/glTFast" target="_blank">glTFast</a><br />
+	<iframe id="glTFast" src="glTFast/index.html"></iframe>
+</div>
+<aside id="kofi">
+<h2>Like it?</h2>
+show your appreciation and...<br />
+<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Buy Me a Coffee', '#46b798', 'C0C3BW7G');kofiwidget2.draw();</script> 
+</aside>
+<aside id="samples">
+<h2>Sample files</h2>
+source: <a href="https://github.com/KhronosGroup/glTF-Sample-Models" target="_blank">Khronos</a>
 <ul>
 <li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb');">Duck</a></li>
 <li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AnimatedMorphCube/glTF-Binary/AnimatedMorphCube.glb');">AnimatedMorphCube</a></li>
@@ -47,22 +62,31 @@
 <li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Monster/glTF-Binary/Monster.glb');">Monster</a></li>
 <li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTextured/glTF-Binary/BoxTextured.glb');">BoxTextured</a></li>
 </ul>
+</aside>
+<aside id="links">
+<h2>Links</h2>
 
+<a class="github-button" href="https://github.com/atteneder/glTFast" aria-label="go to atteneder/glTFast on GitHub">glTFast project on GitHub</a>
+<a class="github-button" href="https://github.com/atteneder" aria-label="Follow @atteneder on GitHub">Follow @atteneder</a>
+
+<a href="https://twitter.com/tteneder?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @tteneder</a>
+
+</aside>
+<aside id="notes">
 <h2>Notes</h2>
 <p>
 Built with Unity 2017.3.1f1<br />
-brotli compressed with WebAssembly support.
+uncompressed with WebAssembly support.
 </p>
 <p>
 UnityGLTF built with exceptions enabled. It would work without it, but breaks complete game in case of exceptions (like 404 errors).
 </p>
-
+</aside>
 <script type="text/javascript">
-	// gameInstance.Module.SendMessage("TestGui","LoadUrl","https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb");
 
 	function init () {
 		var globals = {};
-		globals.frame1 = document.getElementById("GLTFast");
+		globals.frame1 = document.getElementById("glTFast");
 		globals.frame2 = document.getElementById("UnityGLTF");
 		globals.formUrl = document.getElementById("formUrl");
 		window.globals = globals;
@@ -82,6 +106,7 @@ UnityGLTF built with exceptions enabled. It would work without it, but breaks co
 	init();
 
 </script>
-
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

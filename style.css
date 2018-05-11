@@ -1,12 +1,33 @@
 body {
+	display: flex;
+	flex-flow: wrap;
 	height: 100%;
 	width: 100%;
+	min-width: 1204px;
+	margin: 0px;
+	font-family: Helvetica, Arial, Geneva, sans-serif;
 }
 
 iframe {
-	width: 610px;
-	height: 650px;
-	border: none;
+	width: 600px;
+	height: 600px;
+	border: solid 1px;
+	overflow:hidden;
+}
+
+header,
+nav,
+article,
+section,
+aside,
+footer {
+	/*padding: 10px;*/
+	margin: 10px;
+	flex: 1 100%;
+}
+
+h1,h2 {
+	margin: 5px 0px 10px 0px;
 }
 
 #urlform {
@@ -14,5 +35,30 @@ iframe {
 }
 
 #formUrl {
-	width: 80%;
+	min-width: 500pt;
+}
+
+.frameContainer {
+	min-width: 600px;
+}
+
+.frameContainer a {
+	margin: 10px;
+}
+
+#kofi {
+	flex: 2 1 0%;
+	order: 1;
+}
+
+#links {
+	order: 4;
+}
+
+#notes {
+	order: 5;
+}
+
+#samples {
+	flex: 1 0%;
 }
