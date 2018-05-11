@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GLTF Loader Compare</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body>
+	<h1>GLTF Loader Compare</h1>
+<iframe id="UnityGLTF" src="UnityGLTF/index.html"></iframe>
+<iframe id="GLTFast" src="GLTFast/index.html"></iframe>
+<form id="urlform">
+	<input id="formUrl" type="text">
+	<input type="submit" value="load" onclick="submitUrl();">
+</form>
+<h2>Official Khronos glTF glb sample files</h2>
+<ul>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb');">Duck</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AnimatedMorphCube/glTF-Binary/AnimatedMorphCube.glb');">AnimatedMorphCube</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb');">DamagedHelmet</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb');">Avocado</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Binary/BoxVertexColors.glb');">BoxVertexColors</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb');">Box</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTexturedNonPowerOfTwo/glTF-Binary/BoxTextured.glb');">BoxTextured</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxInterleaved/glTF-Binary/BoxInterleaved.glb');">BoxInterleaved</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb');">BoomBox</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb');">Buggy</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF-Binary/CesiumMan.glb');">CesiumMan</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/2CylinderEngine/glTF-Binary/2CylinderEngine.glb');">2CylinderEngine</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb');">Lantern</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/WaterBottle/glTF-Binary/WaterBottle.glb');">WaterBottle</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BrainStem/glTF-Binary/BrainStem.glb');">BrainStem</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BarramundiFish/glTF-Binary/BarramundiFish.glb');">BarramundiFish</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/ReciprocatingSaw/glTF-Binary/ReciprocatingSaw.glb');">ReciprocatingSaw</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/MetalRoughSpheres/glTF-Binary/MetalRoughSpheres.glb');">MetalRoughSpheres</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/TextureSettingsTest/glTF-Binary/TextureSettingsTest.glb');">TextureSettingsTest</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxAnimated/glTF-Binary/BoxAnimated.glb');">BoxAnimated</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb');">VC</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb');">CesiumMilkTruck</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AnimatedMorphSphere/glTF-Binary/AnimatedMorphSphere.glb');">AnimatedMorphSphere</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/RiggedSimple/glTF-Binary/RiggedSimple.glb');">RiggedSimple</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Corset/glTF-Binary/Corset.glb');">Corset</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/RiggedFigure/glTF-Binary/RiggedFigure.glb');">RiggedFigure</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/GearboxAssy/glTF-Binary/GearboxAssy.glb');">GearboxAssy</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/NormalTangentTest/glTF-Binary/NormalTangentTest.glb');">NormalTangentTest</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Monster/glTF-Binary/Monster.glb');">Monster</a></li>
+<li><a href="#" onclick="loadGltf('https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTextured/glTF-Binary/BoxTextured.glb');">BoxTextured</a></li>
+</ul>
+
+<h2>Notes</h2>
+<p>
+Built with Unity 2017.3.1f1<br />
+brotli compressed with WebAssembly support.
+</p>
+<p>
+UnityGLTF built with exceptions enabled. It would work without it, but breaks complete game in case of exceptions (like 404 errors).
+</p>
+
+<script type="text/javascript">
+	// gameInstance.Module.SendMessage("TestGui","LoadUrl","https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb");
+
+	function init () {
+		var globals = {};
+		globals.frame1 = document.getElementById("GLTFast");
+		globals.frame2 = document.getElementById("UnityGLTF");
+		globals.formUrl = document.getElementById("formUrl");
+		window.globals = globals;
+	}
+
+	function loadGltf( url ) {
+		window.globals.frame1.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
+		window.globals.frame2.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
+
+		window.globals.formUrl.value = url;
+	}
+
+	function submitUrl() {
+		loadGltf( window.globals.formUrl.value );
+	}
+
+	init();
+
+</script>
+
+</body>
+</html>

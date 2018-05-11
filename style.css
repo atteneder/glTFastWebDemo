@@ -1,0 +1,18 @@
+body {
+	height: 100%;
+	width: 100%;
+}
+
+iframe {
+	width: 610px;
+	height: 650px;
+	border: none;
+}
+
+#urlform {
+	width: 100%;
+}
+
+#formUrl {
+	width: 80%;
+}
