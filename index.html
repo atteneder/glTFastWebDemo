@@ -10,10 +10,14 @@
 <header><h1>GLTF Loader Compare</h1>
 <form id="urlform">
 	<input id="formUrl" type="text" value="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb">
-	<button type="button" onclick="submitUrl();">Load</button>
+	<button id="loadButton" type="button" disabled>Load</button>
 </form>
-Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
+<div id="preload">
 Note: wait for both Unity players to finish initializing before loading something.
+</div>
+<div id="postload" style="visibility: hidden;">
+Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
+</div>
 </header>
 <div class="frameContainer">
 	<a href="https://github.com/KhronosGroup/UnityGLTF" target="_blank">Khronos UnityGLTF</a><br />
@@ -89,6 +93,7 @@ source: <a href="https://github.com/KhronosGroup/glTF-Sample-Models" target="_bl
 	<ul><li>initial version</li></ul>
 </p>
 <h2>Notes</h2>
+<p>glTFast has a limited feature set lacking things like animation! Check the github project page for details</p>
 <p>
 Built with Unity 2017.3.1f1<br />
 uncompressed with WebAssembly support.
@@ -104,10 +109,31 @@ UnityGLTF built with exceptions enabled. It would work without it, but breaks co
 		globals.frame1 = document.getElementById("glTFast");
 		globals.frame2 = document.getElementById("UnityGLTF");
 		globals.formUrl = document.getElementById("formUrl");
+		globals.readyCount = 2;
+
+		document.getElementById('loadButton').setAttribute("disabled", "disabled"); 
+
+		globals.onReady = function( instance ) {
+			console.log('instance '+instance+' is ready');
+			window.globals.readyCount--;
+			if(window.globals.readyCount===0) {
+				console.log('all is ready');
+				var button = document.getElementById('loadButton');
+				button.disabled = false;
+				button.onclick = function() {submitUrl();};
+				document.getElementById('preload').style.visibility = 'hidden';
+				document.getElementById('postload').style.visibility = 'visible';
+			}
+		}
+
 		window.globals = globals;
 	}
 
 	function loadGltf( url ) {
+		if(window.globals.readyCount>0) {
+			console.log('unity not ready => abort');
+			return;
+		}
 		window.globals.frame1.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
 		window.globals.frame2.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
 

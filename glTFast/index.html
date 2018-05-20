@@ -7,6 +7,9 @@
     <script src="Build/UnityLoader.js"></script>
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/glTFast.json");
+      gameInstance.Module.onRuntimeInitialized = function() {
+        parent.globals.onReady('glFast');
+      };
     </script>
   </head>
   <body style="margin: 0px">
