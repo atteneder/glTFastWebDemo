@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GLTF Loader Compare</title>
+	<title>glTFast Web Demo</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	
 </head>
 <body>
-<header><h1>GLTF Loader Compare</h1>
+<header><h1><a href="https://github.com/atteneder/glTFast">glTFast</a> Web Demo</h1>
 <form id="urlform">
 	<input id="formUrl" type="text" value="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb">
 	<button id="loadButton" type="button" disabled>Load</button>
 </form>
 <div id="preload">
-Note: wait for both Unity players to finish initializing before loading something.
+Note: wait for Unity player to finish initializing before loading something.
 </div>
 <div id="postload" style="visibility: hidden;">
 Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
 </div>
 <div class="openNav" onclick="openNav()">&#9776; Open sample file menu</div>
 </header>
-<div class="frameContainer">
-	<a href="https://github.com/KhronosGroup/UnityGLTF" target="_blank">Khronos UnityGLTF</a><br />
-	<iframe id="UnityGLTF" src="UnityGLTF/index.html"></iframe>
-</div>
 <div class="frameContainer">
 	<a href="https://github.com/atteneder/glTFast" target="_blank">glTFast</a><br />
 	<iframe id="glTFast" src="glTFast/index.html"></iframe>
@@ -165,6 +161,12 @@ show your appreciation and...<br />
 </aside>
 <aside id="notes">
 <h2>Updates</h2>
+<h3>2019-06-30</h3>
+<p>
+	<ul>
+		<li>Removed comparison with UnityGLTF. Exporting an up-to-date version was too much of work lately.</li>
+	</ul>
+</p>
 <h3>2019-02-22</h3>
 <p>
 	<ul>
@@ -210,9 +212,6 @@ show your appreciation and...<br />
 Built with Unity 2017.3.1f1<br />
 uncompressed with WebAssembly support.
 </p>
-<p>
-UnityGLTF built with exceptions enabled. It would work without it, but breaks complete game in case of exceptions (like 404 errors).
-</p>
 </aside>
 <script type="text/javascript">
 
@@ -227,9 +226,8 @@ UnityGLTF built with exceptions enabled. It would work without it, but breaks co
 	function init () {
 		var globals = {};
 		globals.frame1 = document.getElementById("glTFast");
-		globals.frame2 = document.getElementById("UnityGLTF");
 		globals.formUrl = document.getElementById("formUrl");
-		globals.readyCount = 2;
+		globals.readyCount = 1;
 
 		document.getElementById('loadButton').setAttribute("disabled", "disabled"); 
 
@@ -255,7 +253,6 @@ UnityGLTF built with exceptions enabled. It would work without it, but breaks co
 			return;
 		}
 		window.globals.frame1.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
-		window.globals.frame2.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
 
 		window.globals.formUrl.value = url;
 	}
