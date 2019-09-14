@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>glTFast</title>
+    <title>glTFastDemo</title>
     <script src="Build/UnityLoader.js"></script>
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/glTFast.json");
       gameInstance.Module.onRuntimeInitialized = function() {
-        parent.globals.onReady('glTFast');
+        parent.globals.onReady('glTFastDemo');
       };
     </script>
   </head>
   <body style="margin: 0px">
-    <div id="gameContainer" style="wid/a: 600px; height: 600px; margin: 0px"></div>
+    <div id="gameContainer" style="wid/a: 960px; height: 600px; margin: 0px"></div>
   </body>
 </html>
