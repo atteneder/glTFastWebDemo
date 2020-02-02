@@ -2,14 +2,14 @@
 # Unsupported files are commented with a leading '#'
 
 2CylinderEngine/glTF-Draco/2CylinderEngine.gltf
-#2CylinderEngine/glTF-Embedded/2CylinderEngine.gltf
+2CylinderEngine/glTF-Embedded/2CylinderEngine.gltf
 2CylinderEngine/glTF/2CylinderEngine.gltf
-#AlphaBlendModeTest/glTF-Embedded/AlphaBlendModeTest.gltf
+AlphaBlendModeTest/glTF-Embedded/AlphaBlendModeTest.gltf
 AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf
 AnimatedCube/glTF/AnimatedCube.gltf
 AnimatedMorphCube/glTF/AnimatedMorphCube.gltf
 AnimatedMorphSphere/glTF/AnimatedMorphSphere.gltf
-#AnimatedTriangle/glTF-Embedded/AnimatedTriangle.gltf
+AnimatedTriangle/glTF-Embedded/AnimatedTriangle.gltf
 AnimatedTriangle/glTF/AnimatedTriangle.gltf
 AntiqueCamera/glTF/AntiqueCamera.gltf
 Avocado/glTF-Draco/Avocado.gltf
