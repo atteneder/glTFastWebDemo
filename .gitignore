@@ -1,3 +1,5 @@
 # Specify filepatterns you want git to ignore.
 
+.DS_Store
+
 glTFast/StreamingAssets/glTF-Sample-Models

@@ -4,15 +4,37 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>glTFastDemo</title>
-    <script src="Build/UnityLoader.js"></script>
+    <script src="Build/d512c044ce02cec9ff81163a85a74a86.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/glTFast.json");
-      gameInstance.Module.onRuntimeInitialized = function() {
+      onSuccess = function(unityInstance) {
+        window.gameInstance = unityInstance;
         parent.globals.onReady('glTFastDemo');
       };
     </script>
   </head>
-  <body style="margin: 0px">
-    <div id="gameContainer" style="wid/a: 960px; height: 600px; margin: 0px"></div>
+  <body style="margin: 0px; overflow:hidden;">
+    <canvas id="unity-canvas" width=600 height=600 style="width: 600px; height: 600px; background: #231F20"></canvas>
+    <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+      }
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/3651e766817cc648e6b6fba84f25833a.data",
+        frameworkUrl: "Build/6515f35d5039570b88e50bc1433397fe.js",
+        codeUrl: "Build/af400475508bb4953bca884f16ebb87e.wasm",
+        symbolsUrl: "Build/5633156b4ba3f81229a3c6eeff7dd209.json",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Andreas Atteneder",
+        productName: "glTFastDemo",
+        productVersion: "3.0.0",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }).then(onSuccess);
+    </script>
   </body>
 </html>
