@@ -1,5 +1,4 @@
 [build]
-  publish = "_site"
   environment = { GIT_LFS_ENABLED = "true" }
 
 # REDIRECT and HEADERS examples
