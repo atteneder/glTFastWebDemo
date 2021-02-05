@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>glTFastDemo</title>
+    <title>glTFast Demo</title>
     <script src="Build/d512c044ce02cec9ff81163a85a74a86.js"></script>
     <script>
       onSuccess = function(unityInstance) {
         window.gameInstance = unityInstance;
-        parent.globals.onReady('glTFastDemo');
+        parent.globals.onReady('glTFast Demo');
       };
     </script>
   </head>
@@ -24,14 +24,14 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/3651e766817cc648e6b6fba84f25833a.data",
-        frameworkUrl: "Build/6515f35d5039570b88e50bc1433397fe.js",
-        codeUrl: "Build/af400475508bb4953bca884f16ebb87e.wasm",
-        symbolsUrl: "Build/5633156b4ba3f81229a3c6eeff7dd209.json",
+        dataUrl: "Build/6d2ce9ef687d45e1f1bf22558aef0ad1.data",
+        frameworkUrl: "Build/24ab9726bb5d4d123e64f422568da5d2.js",
+        codeUrl: "Build/19b19c45b9d28f8d672c2b0e72bd88f7.wasm",
+        symbolsUrl: "Build/d4e46be15b49b77632ce21b638aa700a.json",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Andreas Atteneder",
-        productName: "glTFastDemo",
-        productVersion: "3.0.0",
+        productName: "glTFast Demo",
+        productVersion: "3.0.1",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       }).then(onSuccess);

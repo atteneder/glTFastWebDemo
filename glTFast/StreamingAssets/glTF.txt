@@ -101,8 +101,8 @@ Lantern/glTF-Draco/Lantern.gltf
 Lantern/glTF-pbrSpecularGlossiness/Lantern.gltf
 Lantern/glTF-Quantized/Lantern.gltf
 Lantern/glTF/Lantern.gltf
-#MaterialsVariantsShoe/glTF-Binary/MaterialsVariantsShoe.glb
-#MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf
+MaterialsVariantsShoe/glTF-Binary/MaterialsVariantsShoe.glb
+MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf
 MetalRoughSpheres/glTF-Binary/MetalRoughSpheres.glb
 MetalRoughSpheres/glTF-Embedded/MetalRoughSpheres.gltf
 MetalRoughSpheres/glTF/MetalRoughSpheres.gltf
@@ -136,8 +136,8 @@ RiggedSimple/glTF-Draco/RiggedSimple.gltf
 RiggedSimple/glTF-Embedded/RiggedSimple.gltf
 RiggedSimple/glTF/RiggedSimple.gltf
 SciFiHelmet/glTF/SciFiHelmet.gltf
-#SheenChair/glTF-Binary/SheenChair.glb
-#SheenChair/glTF/SheenChair.gltf
+SheenChair/glTF-Binary/SheenChair.glb
+SheenChair/glTF/SheenChair.gltf
 SheenCloth/glTF/SheenCloth.gltf
 SimpleMeshes/glTF-Embedded/SimpleMeshes.gltf
 SimpleMeshes/glTF/SimpleMeshes.gltf
