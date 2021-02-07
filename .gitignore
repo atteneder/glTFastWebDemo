@@ -2,4 +2,8 @@
 
 .DS_Store
 
+# local development SSL certificates
+cert.pem
+key.pem
+
 glTFast/StreamingAssets/glTF-Sample-Models
