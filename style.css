@@ -13,6 +13,8 @@ iframe {
 	height: 600px;
 	border: 0;
 	overflow:hidden;
+	box-shadow: 0 0 15px #0000002e;
+    margin: 10px;
 }
 
 header,

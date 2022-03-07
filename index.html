@@ -228,6 +228,11 @@ show your appreciation and...<br />
 				document.getElementById('preload').style.visibility = 'hidden';
 				document.getElementById('postload').style.visibility = 'visible';
 			}
+
+			let params = (new URL(document.location)).searchParams;
+    		let filename = params.get("file") || undefined;
+			if (filename !== undefined)
+				loadGltf(filename);
 		}
 
 		window.globals = globals;
@@ -241,6 +246,7 @@ show your appreciation and...<br />
 			return;
 		}
 		window.globals.frame1.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
+		window.globals.frame1.contentWindow.onFileSelected();
 
 		window.globals.formUrl.value = url;
 	}
