@@ -8,12 +8,71 @@
     <script>
       onSuccess = function(unityInstance) {
         window.gameInstance = unityInstance;
-        parent.globals.onReady('glTFast Demo');
+        
+        if (parent.globals && parent.globals.onReady)
+          parent.globals.onReady('glTFast Demo');
+
+        window.addEventListener("dragover",function(e) { e.preventDefault(); },false);
+        window.addEventListener("drop",function(e) { e.preventDefault(); },false);
+
+        document.getElementById("unity-canvas").addEventListener('drop', (event) => {
+          event.preventDefault();
+          const files = event.dataTransfer.files;
+          if(files && files.length > 0) {
+            let rootFile;
+            for (const file of files) {
+              if (file.name.match(/\.gl(tf|b)$/)) {
+                rootFile = file;
+              }
+            }
+            if(!rootFile) {
+              console.error('No valid glTF file found');
+              return;
+            }
+            if(!rootFile.type) {
+              // Unknown mime type, so we try to infer it from the file extension
+              const isBinary = rootFile.name.match(/\.glb$/);
+              if(files.length>1) {
+                console.warn('Multi-file glTFs are not supported yet!');
+              }
+              rootFile = new File([rootFile],rootFile.name,{type: isBinary ? "model/gltf-binary" : "model/gltf+json"});
+            }
+            unityInstance.SendMessage("TestGui","LoadUrl",window.URL.createObjectURL(rootFile));
+            
+            onFileSelected();
+          }
+        }, false);
       };
+
+      onFileSelected = function() {
+          document.querySelector("div.menu").classList.add("hidden");
+      }
     </script>
+    <style type="text/css">
+      body {
+        font-family: sans-serif;
+        margin: 0px;
+        overflow:hidden;
+      }
+
+      div.menu {
+        display: flex;
+        position: absolute;
+        justify-content: space-around;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      div.menu.hidden {
+        display:none;
+      }
+    </style>
   </head>
-  <body style="margin: 0px; overflow:hidden;">
-    <canvas id="unity-canvas" width=600 height=600 style="width: 600px; height: 600px; background: #231F20"></canvas>
+  <body>
+    <canvas id="unity-canvas" width=600 height=600 style="width: 100vw; height: 100vh; background: #231F20"></canvas>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -24,9 +83,9 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/d35fe52782fc3c9d2710b5abbaacfdcc.data",
-        frameworkUrl: "Build/603c36549d4530c868bda477b498e8a2.js",
-        codeUrl: "Build/0845fa2de0f993cfe7bae341270993d4.wasm",
+        dataUrl: "Build/0618360f3939b0bc81680fd060175725.data",
+        frameworkUrl: "Build/7eb1fe18054a196d253d2c290cc6b9ff.js",
+        codeUrl: "Build/742a4070521408046e4b18cfe83d1d6b.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Andreas Atteneder",
         productName: "glTFast Demo",
@@ -35,5 +94,6 @@
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       }).then(onSuccess);
     </script>
+    <div class="menu"><p>Drop .glb or .gltf files to view</p></div>
   </body>
 </html>
