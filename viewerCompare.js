@@ -125,6 +125,23 @@ template.innerHTML = /*html*/`
     input:focus::-webkit-slider-thumb {
       ${thumbFocusStyles}
     }
+
+    :host(.mode-side-by-side) input {
+        display:none;
+    }
+
+    :host(.mode-side-by-side) ::slotted(div) {
+        width: 33.3%;
+        clip-path:none;
+    }
+
+    :host(.mode-side-by-side) ::slotted([slot='viewer-2']) {
+        left:33.3%;
+    }
+
+    :host(.mode-side-by-side) ::slotted([slot='viewer-3']) {
+        left:66.6%;
+    }
   </style>
   <slot name="viewer-1"></slot>
   <slot name="viewer-2"></slot>
@@ -161,6 +178,15 @@ class ViewerCompare extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+  }
+
+  static get observedAttributes() { return ['mode']; }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+      if(name === 'mode') {
+        this.shadowRoot.host.classList.remove("mode-" + oldValue);
+        this.shadowRoot.host.classList.add("mode-" + newValue);
+      }
   }
 
   connectedCallback() {

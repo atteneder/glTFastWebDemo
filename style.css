@@ -6,10 +6,11 @@ body {
 	min-width: 1204px;
 	margin: 0px;
 	font-family: Helvetica, Arial, Geneva, sans-serif;
+	flex-direction: column;
 }
 
 viewer-compare {
-	width:80vw;
+	width:calc(100vw - 40px);
 	height:600px;
     margin: 10px;
 	box-shadow: 0 0 15px #0000002e;
@@ -96,7 +97,6 @@ h1,h2 {
 }
 
 .frameContainer {
-	min-width: 600px;
 	min-height: 600px;
 	position: absolute;
 	height:100%;

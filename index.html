@@ -24,7 +24,9 @@ Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
 <div>
 	<a href="https://github.com/atteneder/glTFast" target="_blank">glTFast</a> • 
 	<a href="https://github.com/KhronosGroup/UnityGLTF" target="_blank">UnityGLTF</a> • 
-	<a href="https://github.com/mrdoob/three.js" target="_blank">three.js</a>
+	<a href="https://github.com/mrdoob/three.js" target="_blank">three.js</a> • 
+	<button id="side-by-side">Side-by-Side</button>
+	<button id="compare">Compare</button>
 </div>
 
 <viewer-compare>
@@ -239,7 +241,17 @@ show your appreciation and...<br />
 		globals.formUrl = document.getElementById("formUrl");
 		globals.readyCount = 1;
 
+		const viewer = document.querySelector("viewer-compare");
+
 		document.getElementById('loadButton').setAttribute("disabled", "disabled"); 
+
+		document.getElementById('side-by-side').addEventListener('click', () => {
+			viewer.setAttribute('mode', 'side-by-side');
+		});
+
+		document.getElementById('compare').addEventListener('click', () => {
+			viewer.setAttribute('mode', 'compare');
+		});
 
 		globals.onReady = function( instance ) {
 			console.log('instance '+instance+' is ready');
