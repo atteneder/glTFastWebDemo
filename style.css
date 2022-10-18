@@ -6,15 +6,21 @@ body {
 	min-width: 1204px;
 	margin: 0px;
 	font-family: Helvetica, Arial, Geneva, sans-serif;
+	flex-direction: column;
+}
+
+viewer-compare {
+	width:calc(100vw - 40px);
+	height:600px;
+    margin: 10px;
+	box-shadow: 0 0 15px #0000002e;
 }
 
 iframe {
-	width: 600px;
-	height: 600px;
+	width: 100%;
+	height: 100%;
 	border: 0;
 	overflow:hidden;
-	box-shadow: 0 0 15px #0000002e;
-    margin: 10px;
 }
 
 header,
@@ -91,7 +97,9 @@ h1,h2 {
 }
 
 .frameContainer {
-	min-width: 600px;
+	min-height: 600px;
+	position: absolute;
+	height:100%;
 }
 
 .frameContainer a {
