@@ -18,7 +18,7 @@ Note: wait for Unity player to finish initializing before loading something.
 <div id="postload" style="visibility: hidden;">
 Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
 </div>
-<div class="openNav" onclick="openNav()">&#9776; Open sample file menu</div>
+<div class="openNav" onclick="openNav()">&#9776; Sample Files</div>
 </header>
 <div class="frameContainer">
 	<iframe id="glTFast" src="glTFast/index.html"></iframe>
@@ -44,11 +44,11 @@ show your appreciation and...<br />
 <script type="text/javascript">
 
 	function openNav() {
-		document.getElementById("mySidenav").style.width = "350px";
+		document.getElementById("mySidenav").style.left = "0";
 	}
 
 	function closeNav() {
-		document.getElementById("mySidenav").style.width = "0";
+		document.getElementById("mySidenav").style.left = "-350px";
 	}
 
 	function loadLinkList(url,url_prefix) {
