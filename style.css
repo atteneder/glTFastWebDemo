@@ -39,7 +39,8 @@ header form button {
 
 .sidenav {
   height: 100%;
-  width: 0;
+  width: 350px;
+  left: -350px;
   position: fixed;
   z-index: 1;
   background-color: #ddd;
