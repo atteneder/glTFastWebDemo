@@ -7,27 +7,46 @@
 	
 </head>
 <body>
-<header><h1><a href="https://github.com/atteneder/glTFast">glTFast</a> Web Demo</h1>
-<form id="urlform">
-	<input id="formUrl" type="text" value="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb">
-	<button id="loadButton" type="button" disabled>Load</button>
-</form>
-<div id="preload">
+<header>
+	<h1><a href="#"><img src="gltf.svg" alt="glTF" style="vertical-align:middle; height: 2em; filter: brightness(80%);"/> Viewer</a></h1>
+	<span class="separator"> • </span>
+	<a  class="item" href="https://github.com/atteneder/glTFastWebDemo/issues/new">Support & Feedback</a>
+	<span class="separator"> • </span>
+	<a  class="item" href="https://github.com/atteneder/glTFastWebDemo">Source</a>
+	<span class="separator"> • </span>
+	<a class="item" href="about.html" target="_blank">About</a>
+
+<!-- <div id="preload">
 Note: wait for Unity player to finish initializing before loading something.
 </div>
-<div id="postload" style="visibility: hidden;">
-Enter a custom URL to a glTF binary (.glb) and press the "Load" button.
-</div>
-<div class="openNav" onclick="openNav()">&#9776; Sample Files</div>
+<div id="postload" style="display: none;">
+.
+</div> -->
+
 </header>
-<div class="frameContainer">
-	<iframe id="glTFast" src="glTFast/index.html"></iframe>
-</div>
-<aside id="kofi">
-<h2>Like it?</h2>
-show your appreciation and...<br />
-<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Buy Me a Coffee', '#46b798', 'C0C3BW7G');kofiwidget2.draw();</script> 
-</aside>
+<main>
+	<div id="open" class="overlay open">
+		<div class="drop"><p><img src="gltf.svg" alt="glTF" style="height: 2em; filter: brightness(80%);"/><br />Drop here</p></div>
+		<section id="buttons" class="buttons">
+		<button type="button">📂 File</button>
+		<div class="url">
+			<button class="enterUrl">URL</button>
+			<form style="display:none;" id="urlform" title="Enter URL to a glTF file and press the Load button">
+				<input id="formUrl" type="text" value="">
+				<button id="loadButton" type="button" disabled>Load</button>
+			</form>
+		</div>
+		<button class="catalog" type="button" onclick="openNav()">&#9776; Catalog</button>
+		</section>
+	</div>
+	<div id="loader" class="overlay">
+		<div class="loader"></div> 
+	</div>
+	<div class="frameContainer">
+		<iframe id="glTFast" src="glTFast/index.html"></iframe>
+	</div>
+</main>
+
 <div id="mySidenav" class="sidenav">
 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <h2>Sample files</h2>
@@ -35,12 +54,18 @@ show your appreciation and...<br />
 <ul id="filelist">
 </ul>
 </div>
-<aside id="links">
-<a href="about.html" target="_blank">About</a>
-<a class="github-button" href="https://github.com/atteneder/glTFast" aria-label="go to atteneder/glTFast on GitHub">glTFast project on GitHub</a>
-<a class="github-button" href="https://github.com/atteneder" aria-label="Follow @atteneder on GitHub">Follow @atteneder</a>
-<a href="https://twitter.com/tteneder?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" target="_blank">Follow @tteneder</a>
-</aside>
+
+<!-- <footer>
+	<a class="github-button" href="https://github.com/atteneder/glTFast" aria-label="go to atteneder/glTFast on GitHub">glTFast source</a>
+	<a href="https://twitter.com/tteneder?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" target="_blank">@tteneder</a>
+	<a href='https://ko-fi.com/C0C3BW7G' target='_blank'><img height='24' style='border:0px;height:24px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' alt='Buy Me a Coffee at ko-fi.com' /></a>
+	
+	<p class="item">Unity 2021.3f1</p>
+	<span class="separator"> • </span>
+	<p class="item">glTFast 4.9.0</p>
+	<img src="mwu.svg" style="width: 200px;" />
+</footer> -->
+
 <script type="text/javascript">
 
 	function openNav() {
@@ -48,7 +73,7 @@ show your appreciation and...<br />
 	}
 
 	function closeNav() {
-		document.getElementById("mySidenav").style.left = "-350px";
+		document.getElementById("mySidenav").style.left = "-100%";
 	}
 
 	function loadLinkList(url,url_prefix) {
@@ -84,12 +109,23 @@ show your appreciation and...<br />
 	}
 
 	function init () {
+
+		window.addEventListener("dragover",function(e) { e.preventDefault(); },false);
+        window.addEventListener("drop",function(e) { e.preventDefault(); },false);
+
 		var globals = {};
-		globals.frame1 = document.getElementById("glTFast");
+		globals.viewer1 = document.getElementById("glTFast").contentWindow.viewer;
 		globals.formUrl = document.getElementById("formUrl");
+		globals.buttons = document.getElementById("buttons");
+
 		globals.readyCount = 1;
 
-		document.getElementById('loadButton').setAttribute("disabled", "disabled"); 
+		// document.getElementById('loadButton').setAttribute("disabled", "disabled"); 
+
+		globals.registerViewer = function(name,cbObject) {
+			console.info(`Viewer ${name} registered`);
+			globals.viewer1 = cbObject;
+		}
 
 		globals.onReady = function( instance ) {
 			console.log('instance '+instance+' is ready');
@@ -99,15 +135,50 @@ show your appreciation and...<br />
 				var button = document.getElementById('loadButton');
 				button.disabled = false;
 				button.onclick = function() {submitUrl();};
-				document.getElementById('preload').style.visibility = 'hidden';
-				document.getElementById('postload').style.visibility = 'visible';
+				// document.getElementById('preload').style.display = 'none';
+				// document.getElementById('postload').style.display = '';
 			}
 
 			let params = (new URL(document.location)).searchParams;
-    		let filename = params.get("file") || undefined;
+			let filename = params.get("file") || undefined;
 			if (filename !== undefined)
 				loadGltf(filename);
 		}
+
+		globals.drop = function(event) {
+			event.preventDefault();
+			const files = event.dataTransfer.files;
+			if(files && files.length > 0) {
+				let rootFile;
+				for (const file of files) {
+					if (file.name.match(/\.gl(tf|b)$/)) {
+						rootFile = file;
+					}
+				}
+				if(!rootFile) {
+					console.error('No valid glTF file found');
+					return;
+				}
+				if(!rootFile.type) {
+					// Unknown mime type, so we try to infer it from the file extension
+					const isBinary = rootFile.name.match(/\.glb$/);
+					if(files.length>1) {
+						console.warn('Multi-file glTFs are not supported yet!');
+					}
+					rootFile = new File([rootFile],rootFile.name,{type: isBinary ? "model/gltf-binary" : "model/gltf+json"});
+				}
+				loadGltf(window.URL.createObjectURL(rootFile));
+			}
+		}
+
+		globals.onModelLoaded = function() {
+			document.getElementById("loader").style.display = 'none';
+		}
+
+		globals.buttons.addEventListener('drop', (event) => {
+          event.preventDefault();
+          globals.drop(event);
+        }, false);
 
 		window.globals = globals;
 
@@ -115,13 +186,16 @@ show your appreciation and...<br />
 	}
 
 	function loadGltf( url ) {
+		console.debug(`Loading ${url}`)
+
+		document.getElementById("open").style.display = 'none';
+		document.getElementById("loader").style.display = 'flex';
+
 		if(window.globals.readyCount>0) {
-			console.log('unity not ready => abort');
+			console.info('viewer not ready');
 			return;
 		}
-		window.globals.frame1.contentWindow.gameInstance.Module.SendMessage("TestGui","LoadUrl",url);
-		window.globals.frame1.contentWindow.onFileSelected();
-
+		window.globals.viewer1.loadGltf(url);
 		window.globals.formUrl.value = url;
 	}
 

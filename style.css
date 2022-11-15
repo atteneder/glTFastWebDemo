@@ -1,20 +1,124 @@
-body {
-	display: flex;
-	flex-flow: wrap;
-	height: 100%;
-	width: 100%;
-	min-width: 1204px;
-	margin: 0px;
-	font-family: Helvetica, Arial, Geneva, sans-serif;
+@font-face {
+	font-family: 'Inter-Regular';
+	src: url('font/inter/Inter-Regular.woff2') format('woff2');
 }
 
-iframe {
-	width: 600px;
-	height: 600px;
+@font-face {
+	font-family: 'Inter-Bold';
+	src: url('font/inter/Inter-Bold.woff2') format('woff2');
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-flow: column nowrap;
+	align-content: stretch;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	color: #ccc;
+	font-family: Inter-Regular, Helvetica, Arial, Geneva, sans-serif;
+}
+
+main {
+	flex-grow: 1;
+	position: relative;
+}
+
+.overlay {
+	z-index: 1;
+	pointer-events:none;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.open section.buttons {
+	display: flex;
+	flex-flow: row nowrap;
+	pointer-events:all;
+	height: 3em;
+	line-height: 3em;
+	gap: .25em;
+}
+
+.open section.buttons > * {
+	flex-grow: 1;
+	flex-shrink: 0;
+}
+
+.open section.buttons > *, .open section.buttons .enterUrl {
+	color: #aaa;
+	background-color: #eee;
+	font-size: 1.4em;
+}
+
+.url {
+	overflow: clip;
+}
+.enterUrl {
+	width: 100%;
+	height: 100%;
+}
+
+.open > div, .open > section {
+	width: 100%;
+	max-width: 500px;
+}
+
+.open > div, .open > section > * {
+	border-radius: .75em;
+}
+
+.open > div {
+	font-size: 1.4em;
+	color: #aaa;
+	text-align: center;
+	border-radius: .75em;
+	margin: .2em;
+	padding: 1em;
+}
+
+.open div.drop {
+	border: #eee dashed;
+}
+
+.open button {
+	cursor:pointer;
+	border-style: none;
+}
+
+.open button:hover {
+	background-color: #ddd;
+}
+
+.frameContainer {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+}
+
+.frameContainer a {
+	margin: 10px;
+}
+
+.frameContainer iframe {
+	flex-grow: 1;
 	border: 0;
 	overflow:hidden;
-	box-shadow: 0 0 15px #0000002e;
-    margin: 10px;
 }
 
 header,
@@ -23,13 +127,44 @@ article,
 section,
 aside,
 footer {
-	/*padding: 10px;*/
-	margin: 10px;
-	flex: 1 100%;
+	display: flex;
 }
 
 header {
-	font-size: 8pt;
+	font-size: 14px;
+	height: 4em;
+	line-height: 4em;
+	background-color: #00000070;
+	align-items: center;
+	overflow-x: auto;
+	overflow-y: hidden;
+	box-shadow: 0 0 8px 2px rgba(0,0,0,.3);
+	white-space: nowrap;
+
+	-webkit-app-region: drag;
+}
+
+header .item, header h1 {
+	padding: 0 1em;
+	margin: 0;
+	transition: background .2s ease;
+}
+
+header h1 {
+	font-size: 1.5em;
+}
+
+header .item, header h1 a {
+	color: #ccc;
+	text-decoration: none;
+}
+
+header .item:hover {
+	background: #444;
+  }
+
+header .separator {
+	margin: .1em;
 }
 
 header form input,
@@ -37,10 +172,16 @@ header form button {
 	font-size: 12pt;
 }
 
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
 .sidenav {
   height: 100%;
-  width: 350px;
-  left: -350px;
+  width: 100%;
+  left: -100%;
   position: fixed;
   z-index: 1;
   background-color: #ddd;
@@ -74,13 +215,8 @@ header form button {
   .sidenav a {font-size: 18px;}
 }
 
-div.openNav {
-	font-size:20px;
-	cursor:pointer;
-}
-
 h1,h2 {
-	margin: 5px 0px 10px 0px;
+	font-family: Inter-Bold;
 }
 
 #urlform {
@@ -89,14 +225,6 @@ h1,h2 {
 
 #formUrl {
 	min-width: 500pt;
-}
-
-.frameContainer {
-	min-width: 600px;
-}
-
-.frameContainer a {
-	margin: 10px;
 }
 
 #kofi {
@@ -115,3 +243,21 @@ h1,h2 {
 #samples {
 	flex: 1 0%;
 }
+
+#loader {
+	display: none;
+}
+
+.loader {
+	border: .5em solid #eee; /* Light grey */
+	border-top: .5em solid #212121; /* Blue */
+	border-radius: 50%;
+	width: 10vmax;
+	height: 10vmax;
+	animation: spin .75s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
