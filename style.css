@@ -64,8 +64,13 @@ main {
 	font-size: 1.4em;
 }
 
+.open-file {
+	display: none;
+}
+
 .url {
 	overflow: clip;
+	display: none;
 }
 .enterUrl {
 	width: 100%;
