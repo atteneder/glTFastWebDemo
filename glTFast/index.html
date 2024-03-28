@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>glTFast Demo</title>
-    <script src="Build/330038001dc0027d53c719262615bedf.loader.js"></script>
+    <script src="Build/e5601636643c8eb8c1a48a12b1b2161d.loader.js"></script>
     <script>
       onSuccess = function(unityInstance) {
         window.gameInstance = unityInstance;
         
-        if (parent.globals && parent.globals.onReady)
+        if (parent.globals && parent.globals.onReady) {
           parent.globals.onReady('glTFast Demo');
+        }
 
         window.addEventListener("dragover",function(e) { e.preventDefault(); },false);
         window.addEventListener("drop",function(e) { e.preventDefault(); },false);
@@ -27,10 +28,14 @@
     <style type="text/css">
       body {
         font-family: sans-serif;
+        color: #999;
         margin: 0px;
         overflow:hidden;
       }
-      
+
+      a { color: #666; }
+      a:hover { color: #009; }
+
       footer {
         position: fixed;
         bottom: 0;
@@ -45,7 +50,7 @@
     </style>
   </head>
   <body>
-    <canvas id="unity-canvas" width=600 height=600 style="width: 100vw; height: 100vh;"></canvas>
+    <canvas id="unity-canvas" width=600 height=600 style="width: 100vw; height: 100vh; background: #FFFFFF"></canvas>
     <script>
 
       let viewer = {};
@@ -66,7 +71,7 @@
       if (parent.globals && parent.globals.registerViewer) {
         parent.globals.registerViewer('glTFast',viewer);
       }
-      
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
@@ -76,10 +81,10 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/8f2656a272678c52b5613df5786ae419.data",
-        frameworkUrl: "Build/9feec564147be4cf81225c5081b25b75.framework.js",
-        codeUrl: "Build/d4710e2d4369724a9b5f9c4a1bf6e757.wasm",
-        symbolsUrl: "Build/3288317e69c071688598d72bbc3a8245.symbols.json",
+        dataUrl: "Build/57fc489c19ad52bff2eb021b83513b0f.data",
+        frameworkUrl: "Build/0d996ebbc35b03aa3ae9d24bc9cb0cfd.framework.js",
+        codeUrl: "Build/a29d7199bb9b9db43b9621c99520001a.wasm",
+        symbolsUrl: "Build/3ef9d52a838f94e4905f4ff2f93f6e04.symbols.json",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Andreas Atteneder",
         productName: "glTFast Demo",
@@ -89,13 +94,12 @@
       }).then(onSuccess);
     </script>
     <footer>
-      <a href="https://unity.com/" target="_blank"><img src="../mwu.svg" style="width: 200px;" /></a>
-      <span class="separator"> • </span>
-      <a href="https://github.com/atteneder/glTFast" target="_blank">glTFast 4.9.0</a>
-      <span class="separator"> • </span>
-      <a href="https://unity.com/" target="_blank">Unity 2021.3f1</a>
+      <a href="https://unity.com/" target="_blank" title="Unity 6000.0.0b12"><img src="../mwu.svg" style="width: 200px;" /></a>
+      <a href="https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@latest/" target="_blank" title="glTFast 6.2.0">glTFast</a>
       <span class="separator"> • </span>
       <p>Built-In Render Pipeline</p>
+      <span class="separator"> • </span>
+      <p>WebGL 2</p>
     </footer>
   </body>
 </html>
