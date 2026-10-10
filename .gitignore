@@ -8,3 +8,6 @@ key.pem
 
 glTFast/StreamingAssets/glTF-Sample-Models
 glTFast/StreamingAssets/gsm
+
+# Local Netlify folder
+.netlify
