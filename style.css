@@ -37,6 +37,37 @@ main {
 	filter: brightness(80%);
 }
 
+.catalog-btn {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+	font-size: 1.2em;
+	padding: 0.5em 1em;
+	background-color: #eee;
+	color: #333;
+	border: none;
+	border-radius: 0.5em;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.catalog-btn .label {
+	display: inline-block;
+	overflow: hidden;
+	max-width: 0;
+	vertical-align: bottom;
+	transition: max-width 0.3s ease;
+}
+
+.catalog-btn:hover .label {
+	max-width: 4em;
+}
+
+.catalog-btn:hover {
+	background-color: #ddd;
+}
+
 .overlay {
 	z-index: 1;
 	pointer-events:none;
@@ -198,6 +229,7 @@ footer {
 }
 
 .sidenav {
+  color: #333;
   height: 100%;
   width: 100%;
   left: -100%;

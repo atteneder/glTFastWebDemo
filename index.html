@@ -25,6 +25,7 @@ Note: wait for Unity player to finish initializing before loading something.
 
 </header>
 <main>
+	<button id="catalogBtn" class="catalog-btn" type="button" onclick="openNav()" style="display:none;"><span class="icon">&#9776;</span><span class="label"> Catalog</span></button>
 	<div id="open" class="overlay open">
 		<div class="drop"><p><img class="gltf-logo" src="gltf.svg" alt="glTF"/><br />Drop here</p></div>
 		<section id="buttons" class="buttons">
@@ -36,7 +37,7 @@ Note: wait for Unity player to finish initializing before loading something.
 				<button id="loadButton" type="button" disabled>Load</button>
 			</form>
 		</div>
-		<button class="catalog" type="button" onclick="openNav()">&#9776; Catalog</button>
+		<button id="openCatalogBtn" class="catalog" type="button" onclick="openNav()">&#9776; Catalog</button>
 		</section>
 	</div>
 	<div id="loader" class="overlay">
@@ -70,10 +71,14 @@ Note: wait for Unity player to finish initializing before loading something.
 
 	function openNav() {
 		document.getElementById("mySidenav").style.left = "0";
+		document.getElementById('catalogBtn').style.display = 'none';
 	}
 
 	function closeNav() {
 		document.getElementById("mySidenav").style.left = "-100%";
+		if(window.globals && window.globals.hasContent) {
+			document.getElementById('catalogBtn').style.display = 'block';
+		}
 	}
 
 	function loadLinkList(url,url_prefix) {
@@ -198,8 +203,11 @@ Note: wait for Unity player to finish initializing before loading something.
 			globals.hasContent = success;
 			if(success) {
 				console.info('Loaded glTF');
+				document.getElementById('catalogBtn').style.display = 'block';
+				document.getElementById('openCatalogBtn').style.display = 'none';
 			} else {
 				globals.open.style.removeProperty('display');
+				document.getElementById('catalogBtn').style.display = 'none';
 				console.error('Loading glTF failed!');
 			}
 		}
@@ -235,6 +243,7 @@ Note: wait for Unity player to finish initializing before loading something.
 
 		globals.open.style.display = 'none';
 		globals.loader.style.display = 'flex';
+		document.getElementById('catalogBtn').style.display = 'none';
 
 		if(window.globals.readyCount>0) {
 			console.info('viewer not ready');
